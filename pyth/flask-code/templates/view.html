@@ -1,0 +1,80 @@
+<!doctype html>
+<title>Simple tables</title>
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+<select id="dropdown">
+    <option value="0">Select your Dataset..</option>
+    <option value="cars">cars</option>
+    <option value="ebay">Ebay</option>
+    <option value="sacramento">sacramento</option>
+</select>
+<input type="button" id="btn-submit" value="Read Panda File">
+<input type="button" id="btn-submit1" value="Read from Sql">
+<input type="button" id="btn-submit2" value="Write to sql">
+<input type="button" id="btn-submit3" value="Delete to sql">
+
+<input type="number" id="fname" name="">
+<input type="button" id="btn-submit5" value="Percentile"> <br>
+<select id="dropdown1">
+    <option value="0">Select your Dataset..</option>
+    <option value="cars">cars</option>
+    <option value="ebay">Ebay</option>
+    <option value="sacramento">sacramento</option>
+</select>
+<input type="button" id="btn-submit4" value="Column Match">
+
+<div id="data">
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>$("#btn-submit").click(function () {
+        const df = $("#dropdown").val();
+        $.ajax("/tables?df=" + df).then((res) => {
+            $("#data").html(res);
+        });
+    });</script>
+
+<script>$("#btn-submit1").click(function () {
+        const df = $("#dropdown").val();
+        $.ajax("/tables1?df=" + df).then((res) => {
+            $("#data").html(res);
+        });
+    });</script>
+
+
+<script>$("#btn-submit2").click(function () {
+        const df = $("#dropdown").val();
+        $.ajax("/tables2?df=" + df).then((res) => {
+            $("#data").html(res);
+        });
+    });</script>
+
+
+<script>$("#btn-submit3").click(function () {
+        const df = $("#dropdown").val();
+        $.ajax("/tables3?df=" + df).then((res) => {
+            $("#data").html(res);
+        });
+    });</script>
+
+
+<script>$("#btn-submit4").click(function () {
+        const df = $("#dropdown").val();
+        const df1 = $("#dropdown1").val();
+        $.ajax("/tables4?df=" + df + "&df1=" + df1).then((res) => {
+            $("#data").html(res);
+        });
+    });</script>
+
+
+<script>$("#btn-submit5").click(function () {
+        const df = $("#dropdown").val();
+        const df1 = $("#fname").val();
+        $.ajax("/tables5?df=" + df + "&df1=" + df1).then((res) => {
+            $("#data").html(res);
+        });
+    });</script>
+
+
+
+
